@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package common_protos;
+
+message ErrorDetail {
+  int64 code = 1;
+  string message = 2;
+  string type = 3;
+}

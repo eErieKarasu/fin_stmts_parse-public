@@ -1,0 +1,19 @@
+fin_files:
+  local_path: /tmp/fin_stmts_parse/{company_name}/{end_date}
+llm:
+  base_url: ${LLM_BASE_URL:-}
+  api_key: ${LLM_API_KEY:-}
+  model: ${LLM_MODEL:-}
+pdf_parse:
+  page_scan:
+    enabled: true
+    initial_window_pages: 30
+    fallback_full_scan: true
+log:
+  root_path: ${FIN_STMTS_LOG_DIR:-/tmp/fin_stmts_parse/logs}
+postgres:
+  dsn: ${POSTGRES_DSN:-}
+  table_names:
+    balance: fin_stmts_parse_results_balance
+    profit: fin_stmts_parse_results_profit
+    cashflow: fin_stmts_parse_results_cashflow

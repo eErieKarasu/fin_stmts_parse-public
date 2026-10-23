@@ -1,0 +1,105 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: ${APP_ID}
+spec:
+  assemblyPhase: Succeeded
+  componentKinds:
+    - group: apps
+      kind: Deployment
+    - group: ""
+      kind: Service
+  descriptor: {}
+  selector:
+    matchLabels:
+      app.cpaas.io/name: ${APP_ID}.${NAMESPACE}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_ID}
+labels:
+    app.cpaas.io/name: ${APP_ID}.${NAMESPACE}
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      service.cpaas.io/name: deployment-${APP_ID}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service.cpaas.io/name: deployment-${APP_ID}
+    spec:
+      affinity: {}
+      containers:
+        - command:
+            - /app/start.sh
+          env:
+            - name: GRPC_APP_PATH
+              value: ${GRPC_APP_PATH}
+            - name: MCP_APP_PATH
+              value: ${MCP_APP_PATH}
+            - name: APISIX_ADMIN_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: ADMIN_KEY
+                  name: fin-stmts-parse-secrets
+          envFrom:
+            - configMapRef:
+                name: fin-stmts-parse-config
+          image: ${IMAGE}
+          imagePullPolicy: IfNotPresent
+          name: ${APP_ID}
+          ports:
+            - containerPort: 50051
+              protocol: TCP
+            - containerPort: 8001
+              protocol: TCP
+            - containerPort: 8002
+              protocol: TCP
+              name: metrics
+            - containerPort: 9000
+              protocol: TCP
+              name: health
+          resources:
+            limits:
+              cpu: "1"
+              memory: 2Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_ID}-hl
+labels:
+  app.cpaas.io/name: ${APP_ID}.${NAMESPACE}
+spec:
+  internalTrafficPolicy: Cluster
+  ports:
+    - appProtocol: tcp
+      name: grpc
+      port: 50051
+      protocol: TCP
+      targetPort: 50051
+  selector:
+    service.cpaas.io/name: deployment-${APP_ID}
+  sessionAffinity: None
+  clusterIP: None

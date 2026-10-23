@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package app;
+
+// option java_package = "com.smb.report.api.v1";
+// option java_multiple_files = true;
+
+service FinStmtsParse {
+  rpc parseFinStmts(ParseRequest) returns (ParseReply);
+}
+
+// 主请求消息
+message ParseRequest {
+  string pubGloblJnno = 1;       // 公共全局编号（注意：proto 中推荐 snake_case）
+  string seriNo = 2;              // 序列号
+  string requestId = 3;            // 请求 ID
+  string fnsId = 4;
+  string fnsNo = 5;
+  string companyName = 6;         // 公司名称
+  string reportType = 7;          //报告类型
+  string endDate = 8;  //财报截至日期 yyyyMM
+
+  // 财务文件
+  repeated FinFile finFiles = 9;
+}
+
+// 财务文件
+message FinFile {
+  string fileName = 1;   // 文件名称
+  string fileUrl = 2;  // 文件地址
+}
+
+
+// 响应消息
+message ParseReply {
+  string tranCode = 1;
+  string chanId = 2;
+  string sysId = 3;
+  string pubGloblJnno = 4;
+  string seriNo = 5;
+  string reqBizDate = 6;
+  string tranCounter = 7;
+  string orgNo = 8;
+  string protocol = 9;
+  string preReverseFlag = 10;
+  string legalCode = 11;
+  string headVerNo = 12;
+  string preSysId = 13;
+  string preSerialNo = 14;
+  string preReqVerNo = 15;
+  string preSubFlag = 16;
+
+  string requestId = 17;
+  string fnsId = 18;
+  string fnsNo = 19;
+  // 1: 解析成功; 2: 解析中（占位）; 3: 解析失败; 4: 部分解析成功
+  string dealSts = 20;
+  string dealRemark = 21;
+  // 资产负债表信息
+  map<string, string> fnsItemBsBegin = 22;
+  map<string, string> fnsItemBsEnd = 23;
+  // 损益表信息
+  map<string, string> fnsItemIs = 24;
+  // 现金流量表信息
+  map<string, string> fnsItemCs = 25;
+  // 报表是否存在：0 不存在，1 存在
+  string fnsItemBsFlag = 26;
+  string fnsItemIsFlag = 27;
+  string fnsItemCsFlag = 28;
+}
+
+message ErrorDetail {
+  int64 code = 1;
+  string message = 2;
+  string type = 3;
+}

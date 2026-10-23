@@ -1,0 +1,37 @@
+__pycache__/
+*.pyc
+*.pyo
+.vscode
+*.jpg
+*.pdf
+*.venv
+venv
+*.pdf
+*.xlsx
+testparse.py
+output_test
+files
+.DS_Store
+packages/
+metrics/
+test_mcp.py
+test_grpc.py
+.cursor
+.pytest_cache
+logs/
+smoke-test/
+# Dataset review renders
+/tmp/dataset_review/
+
+# Evaluation reports (may contain parsed financial data)
+/evaluate/reports/
+
+# Deployment credentials and private business fixtures
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.zip
+/evaluate/gold.json
+/apps/fin_stmts_parse_grpc/testdata/confirmed.json

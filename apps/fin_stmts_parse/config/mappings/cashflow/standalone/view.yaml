@@ -1,0 +1,103 @@
+view_data:
+- key: operating_cash_flow
+  name: 经营活动产生的现金流量
+  items:
+  - code: X01040000
+    name: 经营活动现金流入小计
+    level: 2
+    items:
+    - code: X01010000
+      name: 销售商品、提供劳务收到的现金
+    - code: X01020000
+      name: 收到的税费返还
+    - code: X01030000
+      name: 收到的其他与经营活动有关的现金
+  - code: X01090000
+    name: 经营活动现金流出小计
+    level: 2
+    items:
+    - code: X01050000
+      name: 购买商品、接受劳务支付的现金
+    - code: X01060000
+      name: 支付给职工以及为职工支付的现金
+    - code: X01070000
+      name: 支付的各项税费
+    - code: X01011800
+      name: 支付其他与经营活动有关的现金
+  - code: X01100000
+    name: 经营活动产生的现金流量净额
+- key: investing_cash_flow
+  name: 投资活动产生的现金流量
+  items:
+  - code: X02050000
+    name: 投资活动现金流入小计
+    level: 2
+    items:
+    - code: X02010000
+      name: 收回投资收到的现金
+    - code: X02020000
+      name: 取得投资收益收到的现金
+    - code: X02030000
+      name: 处置固定、无形和其他长期资产所收回的现金净额
+    - code: X02030100
+      name: 处置子公司及其他营业单位收到的现金净额
+    - code: X02040000
+      name: 收到的其他与投资活动有关的现金
+  - code: X02090000
+    name: 投资活动现金流出小计
+    level: 2
+    items:
+    - code: X02060000
+      name: 购建固定资产、无形资产和其他长期资产所支付的现金
+    - code: X02070000
+      name: 投资支付的现金
+    - code: X02080200
+      name: 取得子公司及其他营业单位支付的现金净额
+    - code: X02080300
+      name: 支付其他与投资活动有关的现金
+  - code: X02100000
+    name: 投资活动产生的现金流量净额
+- key: financing_cash_flow
+  name: 筹资活动产生的现金流量
+  items:
+  - code: X03040000
+    name: 筹资活动现金流入小计
+    level: 2
+    items:
+    - code: X03010000
+      name: 吸收投资收到的现金
+    - code: X02080500
+      name: 取得借款收到的现金
+    - code: X03020100
+      name: 发行债券收到的现金
+    - code: X03030000
+      name: 收到的其他与筹资活动有关的现金
+  - code: X03080000
+    name: 筹资活动现金流出小计
+    level: 2
+    items:
+    - code: X03050000
+      name: 偿还债务支付的现金
+    - code: X03060000
+      name: 分配股利、利润或偿付利息支付的现金
+    - code: X03070000
+      name: 支付其他与筹资活动有关的现金
+  - code: X03090000
+    name: 筹资活动产生的现金流量净额
+- key: exchange_rate_effect
+  name: 汇率变动对现金及现金等价物的影响
+  items:
+  - code: X04010000
+    name: 汇率变动对现金及现金等价物的影响
+- key: net_cash_increase
+  name: 现金及现金等价物净增加额
+  items:
+  - code: X05000000
+    name: 现金及现金等价物净增加额
+  - code: X04010100
+    name: 期初现金及现金等价物余额
+- key: end_cash_and_cash_equivalents
+  name: 期末现金及现金等价物余额
+  items:
+  - code: X06010000
+    name: 期末现金及现金等价物余额

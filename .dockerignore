@@ -1,0 +1,44 @@
+# Version control and editor metadata
+.git/
+.gitignore
+.gitattributes
+.github/
+.vscode/
+.idea/
+.cursor/
+.DS_Store
+
+# Python virtual environments and caches
+.venv/
+venv/
+env/
+**/__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Locally installed dependencies and runtime state
+packages/
+metrics/
+logs/
+tmp/
+
+# Local input/output data
+files/
+output_test/
+smoke-test/
+*.log
+*.pdf
+*.xlsx
+*.xls
+
+# Local build artifacts
+.temp_build_context/
+build/
+dist/
+*.egg-info/

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>财报解析校验</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel controls">
+        <div>
+          <p class="eyebrow">fin_stmts_parse</p>
+          <h1>财报解析校验</h1>
+        </div>
+        <div class="control-grid">
+          <label>
+            <span>MCP 地址</span>
+            <input id="mcpUrl" value="__FIN_STMTS_MCP_URL__" />
+          </label>
+          <label>
+            <span>Session ID</span>
+            <input id="sessionId" />
+          </label>
+        </div>
+        <label class="file-box">
+          <span>财报文件（可多选）</span>
+          <input
+            id="fileInput"
+            type="file"
+            multiple
+            accept=".pdf,.png,.jpg,.jpeg,.bmp,.tiff,.tif,.webp,.xls,.xlsx"
+            aria-describedby="fileHint"
+          />
+          <small id="fileHint">支持 PDF、图片和 Excel；选择多个文件后将作为一个批次并发解析。</small>
+        </label>
+        <section
+          id="selectedFiles"
+          class="selected-files"
+          aria-live="polite"
+          aria-label="已选择的财报文件"
+        ></section>
+        <label class="toggle-row">
+          <input id="useSdoss" type="checkbox" />
+          <span>通过 sdoss 中转上传</span>
+        </label>
+        <div class="actions">
+          <button id="runBtn" class="primary">上传解析</button>
+          <button id="inspectBtn" type="button">MCP 校验</button>
+          <button id="clearBtn" type="button">清空结果</button>
+        </div>
+        <p id="status" class="status" aria-live="polite">等待输入</p>
+        <ol id="progressLog" class="progress-log" hidden></ol>
+      </section>
+
+      <section id="summary" class="summary" hidden></section>
+      <section id="results" class="results"></section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

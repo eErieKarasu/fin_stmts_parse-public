@@ -1,0 +1,44 @@
+fin_files:
+  local_path: /tmp/fin_stmts_parse/{company_name}/{end_date}
+vlm:
+  base_url: ${VLM_BASE_URL:-}
+  api_key: ${VLM_API_KEY:-}
+  model: ${VLM_MODEL:-}
+llm:
+  base_url: ${LLM_BASE_URL:-}
+  api_key: ${LLM_API_KEY:-}
+  model: ${LLM_MODEL:-}
+paddle_ocr:
+  enabled: true
+  api_url: ${PADDLE_OCR_API_URL:-http://127.0.0.1:8080/layout-parsing}
+pdf_parse:
+  page_scan:
+    enabled: true
+    initial_window_pages: 30
+    fallback_full_scan: true
+log:
+  root_path: ${FIN_STMTS_LOG_DIR:-/tmp/fin_stmts_parse/logs}
+postgres:
+  dsn: ${POSTGRES_DSN:-}
+  table_names:
+    balance: statement_finance_postion
+    profit: profit_loss
+    cashflow: cash_flow
+oss:
+  endpoint: ${OSS_ENDPOINT:-}
+  bucket_name: ${OSS_BUCKET_NAME:-}
+  account_name: ${OSS_ACCOUNT_NAME:-}
+  account_key_id: ${OSS_ACCOUNT_KEY_ID:-}
+  account_key_secret: ${OSS_ACCOUNT_KEY_SECRET:-}
+llm_oss:
+  endpoint: ${LLM_OSS_ENDPOINT:-}
+  bucket_name: ${LLM_OSS_BUCKET_NAME:-}
+  account_name: ${LLM_OSS_ACCOUNT_NAME:-}
+  account_key_id: ${LLM_OSS_ACCOUNT_KEY_ID:-}
+  account_key_secret: ${LLM_OSS_ACCOUNT_KEY_SECRET:-}
+agent_oss:
+  endpoint: ${AGENT_OSS_ENDPOINT:-}
+  bucket_name: ${AGENT_OSS_BUCKET_NAME:-}
+  account_name: ${AGENT_OSS_ACCOUNT_NAME:-}
+  account_key_id: ${AGENT_OSS_ACCOUNT_KEY_ID:-}
+  account_key_secret: ${AGENT_OSS_ACCOUNT_KEY_SECRET:-}
